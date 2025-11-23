@@ -1,0 +1,60 @@
+﻿@model ABreak.Application.ViewModels.TipoPausaViewModel
+
+@{
+    ViewData["Title"] = "Editar Tipo de Pausa";
+}
+
+<div class="container">
+    <h2>✏️ Editar Tipo de Pausa</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descricao" class="form-label"></label>
+                    <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Icone" class="form-label"></label>
+                    <input asp-for="Icone" class="form-control" />
+                    <span asp-validation-for="Icone" class="text-danger"></span>
+                    <small class="form-text text-muted">Digite um emoji para representar o tipo de pausa</small>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DuracaoRecomendadaMinutos" class="form-label"></label>
+                    <input asp-for="DuracaoRecomendadaMinutos" class="form-control" type="number" />
+                    <span asp-validation-for="DuracaoRecomendadaMinutos" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="Ativo" class="form-check-input" />
+                    <label asp-for="Ativo" class="form-check-label"></label>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">💾 Salvar</button>
+                    <a asp-action="Index" class="btn btn-secondary">❌ Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">Bem-vindo ao ABreak! 🧘</h1>
+    <p class="lead">Monitor de Pausas Saudáveis no Trabalho</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">Total de Usuários</h5>
+                <p class="card-text display-4">@ViewBag.TotalUsuarios</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Pausas Hoje</h5>
+                <p class="card-text display-4">@ViewBag.PausasHoje</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title">Total de Pausas</h5>
+                <p class="card-text display-4">@ViewBag.TotalPausas</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h3>Tipos de Pausas Recomendadas</h3>
+        <div class="list-group">
+            <div class="list-group-item">
+                <h5>🧘 Alongamento</h5>
+                <p>Faça exercícios de alongamento a cada 2 horas para evitar dores musculares.</p>
+            </div>
+            <div class="list-group-item">
+                <h5>💧 Hidratação</h5>
+                <p>Beba água regularmente para manter-se hidratado durante o trabalho.</p>
+            </div>
+            <div class="list-group-item">
+                <h5>👁️ Descanso Visual</h5>
+                <p>Descanse os olhos a cada 20 minutos olhando para longe da tela.</p>
+            </div>
+            <div class="list-group-item">
+                <h5>🚶 Caminhada</h5>
+                <p>Levante-se e caminhe um pouco a cada hora para melhorar a circulação.</p>
+            </div>
+        </div>
+    </div>
+</div>

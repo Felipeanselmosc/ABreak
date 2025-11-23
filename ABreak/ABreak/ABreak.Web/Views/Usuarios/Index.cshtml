@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ABreak.Application.DTOs.UsuarioDTO>
+
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <h2>📋 Usuários</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-action="Create" class="btn btn-primary">
+                ➕ Novo Usuário
+            </a>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Data Cadastro</th>
+                        <th>Status</th>
+                        <th class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var usuario in Model)
+                    {
+                        <tr>
+                            <td>@usuario.Nome</td>
+                            <td>@usuario.Email</td>
+                            <td>@usuario.DataCadastro.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                @if (usuario.Ativo)
+                                {
+                                    <span class="badge bg-success">Ativo</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inativo</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Details" asp-route-id="@usuario.Id" class="btn btn-sm btn-info">👁️ Detalhes</a>
+                                <a asp-action="Edit" asp-route-id="@usuario.Id" class="btn btn-sm btn-warning">✏️ Editar</a>
+                                <a asp-action="Delete" asp-route-id="@usuario.Id" class="btn btn-sm btn-danger">🗑️ Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

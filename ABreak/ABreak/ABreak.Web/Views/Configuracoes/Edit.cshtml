@@ -1,0 +1,77 @@
+﻿@model ABreak.Application.ViewModels.ConfiguracaoPausaViewModel
+
+@{
+    ViewData["Title"] = "Editar Configuração";
+}
+
+<div class="container">
+    <h2>✏️ Editar Configuração de Pausa</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="UsuarioId" class="form-label"></label>
+                    <select asp-for="UsuarioId" class="form-select" asp-items="ViewBag.Usuarios">
+                        <option value="">-- Selecione um usuário --</option>
+                    </select>
+                    <span asp-validation-for="UsuarioId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TipoPausaId" class="form-label"></label>
+                    <select asp-for="TipoPausaId" class="form-select" asp-items="ViewBag.TiposPausa">
+                        <option value="">-- Selecione um tipo --</option>
+                    </select>
+                    <span asp-validation-for="TipoPausaId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="IntervaloMinutos" class="form-label"></label>
+                    <input asp-for="IntervaloMinutos" class="form-control" type="number" />
+                    <span asp-validation-for="IntervaloMinutos" class="text-danger"></span>
+                    <small class="form-text text-muted">A cada quantos minutos será notificado</small>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="HorarioInicioTrabalho" class="form-label"></label>
+                        <input asp-for="HorarioInicioTrabalho" class="form-control" type="time" />
+                        <span asp-validation-for="HorarioInicioTrabalho" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="HorarioFimTrabalho" class="form-label"></label>
+                        <input asp-for="HorarioFimTrabalho" class="form-control" type="time" />
+                        <span asp-validation-for="HorarioFimTrabalho" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="NotificacaoAtiva" class="form-check-input" />
+                    <label asp-for="NotificacaoAtiva" class="form-check-label"></label>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="Ativo" class="form-check-input" />
+                    <label asp-for="Ativo" class="form-check-label"></label>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">💾 Salvar</button>
+                    <a asp-action="Index" class="btn btn-secondary">❌ Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

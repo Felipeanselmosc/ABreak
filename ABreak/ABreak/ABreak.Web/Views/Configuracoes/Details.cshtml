@@ -1,0 +1,60 @@
+﻿@model ABreak.Application.DTOs.ConfiguracaoPausaDTO
+
+@{
+    ViewData["Title"] = "Detalhes da Configuração";
+}
+
+<div class="container">
+    <h2>👁️ Detalhes da Configuração</h2>
+    <hr />
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Usuário</dt>
+                <dd class="col-sm-9">Usuário #@Model.UsuarioId</dd>
+
+                <dt class="col-sm-3">Tipo de Pausa</dt>
+                <dd class="col-sm-9">@Model.TipoPausaNome</dd>
+
+                <dt class="col-sm-3">Intervalo</dt>
+                <dd class="col-sm-9">@Model.IntervaloMinutos minutos</dd>
+
+                <dt class="col-sm-3">Horário de Início</dt>
+                <dd class="col-sm-9">@Model.HorarioInicioTrabalho.ToString(@"hh\:mm")</dd>
+
+                <dt class="col-sm-3">Horário de Fim</dt>
+                <dd class="col-sm-9">@Model.HorarioFimTrabalho.ToString(@"hh\:mm")</dd>
+
+                <dt class="col-sm-3">Notificação</dt>
+                <dd class="col-sm-9">
+                    @if (Model.NotificacaoAtiva)
+                    {
+                        <span class="badge bg-success">🔔 Ativa</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">🔕 Inativa</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">Status</dt>
+                <dd class="col-sm-9">
+                    @if (Model.Ativo)
+                    {
+                        <span class="badge bg-success">Ativo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Inativo</span>
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">✏️ Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Voltar</a>
+    </div>
+</div>

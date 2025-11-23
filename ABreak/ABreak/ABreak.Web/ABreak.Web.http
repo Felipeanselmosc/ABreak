@@ -1,0 +1,6 @@
+@ABreak.Web_HostAddress = http://localhost:5259
+
+GET {{ABreak.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,66 @@
+﻿@model ABreak.Application.DTOs.PausaDTO
+
+@{
+    ViewData["Title"] = "Detalhes da Pausa";
+}
+
+<div class="container">
+    <h2>👁️ Detalhes da Pausa</h2>
+    <hr />
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Usuário</dt>
+                <dd class="col-sm-9">@Model.UsuarioNome</dd>
+
+                <dt class="col-sm-3">Tipo de Pausa</dt>
+                <dd class="col-sm-9">
+                    <span style="font-size: 1.5rem;">@Model.TipoPausaIcone</span>
+                    @Model.TipoPausaNome
+                </dd>
+
+                <dt class="col-sm-3">Data/Hora Início</dt>
+                <dd class="col-sm-9">@Model.DataHoraInicio.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                <dt class="col-sm-3">Data/Hora Fim</dt>
+                <dd class="col-sm-9">
+                    @if (Model.DataHoraFim.HasValue)
+                    {
+                        @Model.DataHoraFim.Value.ToString("dd/MM/yyyy HH:mm")
+                    }
+                    else
+                    {
+                        <span class="text-muted">Não finalizada</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">Duração</dt>
+                <dd class="col-sm-9">@Model.DuracaoMinutos minutos</dd>
+
+                <dt class="col-sm-3">Status</dt>
+                <dd class="col-sm-9">
+                    @if (Model.Completada)
+                    {
+                        <span class="badge bg-success">✅ Completada</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">⏳ Pendente</span>
+                    }
+                </dd>
+
+                @if (!string.IsNullOrEmpty(Model.Observacao))
+                {
+                    <dt class="col-sm-3">Observação</dt>
+                    <dd class="col-sm-9">@Model.Observacao</dd>
+                }
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">✏️ Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Voltar</a>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ABreak.Application.DTOs.ConfiguracaoPausaDTO>
+
+@{
+    ViewData["Title"] = "Configurações de Pausa";
+}
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <h2>⚙️ Configurações de Pausa</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-action="Create" class="btn btn-primary">
+                ➕ Nova Configuração
+            </a>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Usuário</th>
+                        <th>Tipo de Pausa</th>
+                        <th>Intervalo</th>
+                        <th>Horário Trabalho</th>
+                        <th>Notificação</th>
+                        <th>Status</th>
+                        <th class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var config in Model)
+                    {
+                        <tr>
+                            <td>Usuário #@config.UsuarioId</td>
+                            <td>@config.TipoPausaNome</td>
+                            <td>@config.IntervaloMinutos min</td>
+                            <td>@config.HorarioInicioTrabalho.ToString(@"hh\:mm") - @config.HorarioFimTrabalho.ToString(@"hh\:mm")</td>
+                            <td>
+                                @if (config.NotificacaoAtiva)
+                                {
+                                    <span class="badge bg-success">🔔 Ativa</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">🔕 Inativa</span>
+                                }
+                            </td>
+                            <td>
+                                @if (config.Ativo)
+                                {
+                                    <span class="badge bg-success">Ativo</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inativo</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Details" asp-route-id="@config.Id" class="btn btn-sm btn-info">👁️ Detalhes</a>
+                                <a asp-action="Edit" asp-route-id="@config.Id" class="btn btn-sm btn-warning">✏️ Editar</a>
+                                <a asp-action="Delete" asp-route-id="@config.Id" class="btn btn-sm btn-danger">🗑️ Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

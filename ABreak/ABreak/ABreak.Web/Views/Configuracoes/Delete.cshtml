@@ -1,0 +1,38 @@
+﻿@model ABreak.Application.DTOs.ConfiguracaoPausaDTO
+
+@{
+    ViewData["Title"] = "Excluir Configuração";
+}
+
+<div class="container">
+    <h2>🗑️ Excluir Configuração</h2>
+    <hr />
+
+    <div class="alert alert-danger">
+        <h4>Tem certeza que deseja excluir esta configuração?</h4>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Usuário</dt>
+                <dd class="col-sm-9">Usuário #@Model.UsuarioId</dd>
+
+                <dt class="col-sm-3">Tipo de Pausa</dt>
+                <dd class="col-sm-9">@Model.TipoPausaNome</dd>
+
+                <dt class="col-sm-3">Intervalo</dt>
+                <dd class="col-sm-9">@Model.IntervaloMinutos minutos</dd>
+
+                <dt class="col-sm-3">Horário Trabalho</dt>
+                <dd class="col-sm-9">@Model.HorarioInicioTrabalho.ToString(@"hh\:mm") - @Model.HorarioFimTrabalho.ToString(@"hh\:mm")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post" class="mt-3">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">🗑️ Confirmar Exclusão</button>
+        <a asp-action="Index" class="btn btn-secondary">❌ Cancelar</a>
+    </form>
+</div>
